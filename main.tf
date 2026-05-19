@@ -8,7 +8,7 @@ resource "proxmox_virtual_environment_container" "lxc1" {
   description  = "LXC Container - ${var.lxc_names[0]}"
   node_name    = var.proxmox_node
   unprivileged = true
-  started      = false
+  started      = true
 
   initialization {
     hostname = var.lxc_names[0]
@@ -53,7 +53,7 @@ resource "proxmox_virtual_environment_container" "lxc2" {
   description  = "LXC Container - ${var.lxc_names[1]}"
   node_name    = var.proxmox_node
   unprivileged = true
-  started      = false
+  started      = true
 
   initialization {
     hostname = var.lxc_names[1]
