@@ -1,14 +1,14 @@
 # Proxmox Connection
 pm_api_url      = "https://<PROXMOX_IP>:8006/"
-pm_api_token_id = "user@tutoken=<YOUR_TOKEN>"
+pm_api_token_id = "user@pve!token=<YOUR_TOKEN>"
 
 # Proxmox Settings
-proxmox_node    = "nodo_name"
+proxmox_node    = "pve"
 proxmox_storage = "local-lvm"
 bridge          = "vmbr1"
 
 # LXC Configuration
-lxc_names       = ["lxc1", "lxc2"]
+lxc_names       = ["lxc1", "lxc2", "lxc3"]
 lxc_password    = "change_me"
 ssh_public_key  = "ssh-ed25519 <YOUR_PUBLIC_KEY>"
 ssh_port        = 22
@@ -19,4 +19,4 @@ memory          = 512
 disk_size       = "4G"
 
 # OS Template (must be available in Proxmox)
-os_template     = "debian-12-standard_version.tar"
+os_template     = "debian-12-standard"
