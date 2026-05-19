@@ -24,7 +24,7 @@ Configuración de Terraform para crear contenedores LXC en Proxmox VE.
 2. Edit `terraform.tfvars` with your values:
    - `pm_api_url`: Your Proxmox server URL
    - `pm_api_token_id`: Your API token (format: `user@pve!token=uuid`)
-   - Other parameters as needed
+   - Other parameters as needed.
 
 3. Initialize Terraform:
    ```bash
