@@ -53,10 +53,20 @@ Configuración de Terraform para crear contenedores LXC en Proxmox VE.
 
 ## Resources Created / Recursos Creados
 
-- 2 Debian 12 LXC containers
+- Debian 12 LXC containers (number based on `lxc_names` list)
 - CPU, memory and disk configuration
 - Network interface on specified bridge
 - User with password and SSH key
+
+## Adding More LXC / Agregar Más LXC
+
+Simply add more names to the `lxc_names` list in `terraform.tfvars`:
+
+```hcl
+lxc_names = ["lxc1", "lxc2", "lxc3", "lxc4"]
+```
+
+Run `terraform plan` to see the changes.
 
 ## Cleanup / Limpiar
 
