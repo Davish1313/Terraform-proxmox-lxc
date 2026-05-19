@@ -27,6 +27,10 @@ variable "proxmox_storage" {
 variable "lxc_names" {
   description = "Lista de nombres para los LXC"
   type        = list(string)
+  validation {
+    condition     = length(var.lxc_names) > 0
+    error_message = "Debe especificar al menos un LXC"
+  }
 }
 
 variable "lxc_password" {
@@ -55,18 +59,30 @@ variable "vcpu" {
   description = "Número de vCPUs"
   type        = number
   default     = 1
+  validation {
+    condition     = var.vcpu >= 1 && var.vcpu <= 16
+    error_message = "vCPU debe estar entre 1 y 16"
+  }
 }
 
 variable "memory" {
   description = "Memoria RAM en MB"
   type        = number
   default     = 512
+  validation {
+    condition     = var.memory >= 128 && var.memory <= 65536
+    error_message = "Memory debe estar entre 128MB y 64GB"
+  }
 }
 
 variable "disk_size" {
-  description = "Tamaño del disco en GB"
+  description = "Tamaño del disco (ej: 4G, 8G, 16G)"
   type        = string
   default     = "4G"
+  validation {
+    condition     = can(regex("^[0-9]+[GM]$", var.disk_size))
+    error_message = "Disk size debe ser formato número seguido de G o M (ej: 4G, 512M)"
+  }
 }
 
 variable "os_template" {
