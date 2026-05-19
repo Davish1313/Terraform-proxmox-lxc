@@ -1,15 +1,9 @@
 output "lxc_info" {
   description = "Información de los LXC creados"
-  value = {
-    lxc1 = { id = proxmox_virtual_environment_container.lxc1.vm_id }
-    lxc2 = { id = proxmox_virtual_environment_container.lxc2.vm_id }
-  }
+  value       = { for name in var.lxc_names : name => { id = proxmox_virtual_environment_container.lxc[name].vm_id } }
 }
 
 output "lxc_ids" {
   description = "IDs de los contenedores"
-  value = {
-    lxc1 = proxmox_virtual_environment_container.lxc1.vm_id
-    lxc2 = proxmox_virtual_environment_container.lxc2.vm_id
-  }
+  value       = { for name in var.lxc_names : name => proxmox_virtual_environment_container.lxc[name].vm_id }
 }
