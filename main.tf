@@ -11,6 +11,8 @@ resource "proxmox_virtual_environment_container" "lxc" {
   unprivileged = true
   started     = true
 
+  tags = ["terraform", var.lxc_project]
+
   initialization {
     hostname = each.value
 
@@ -27,9 +29,11 @@ resource "proxmox_virtual_environment_container" "lxc" {
   }
 
   operating_system {
-    template_file_id = "local:vztmpl/debian-12-standard_12.12_1_amd64.tar.zst"
+    template_file_id = "local:vztmpl/${var.os_template}.tar.zst"
     type             = "debian"
   }
+
+  protection = true
 
   cpu {
     cores = var.vcpu
@@ -37,6 +41,7 @@ resource "proxmox_virtual_environment_container" "lxc" {
 
   memory {
     dedicated = var.memory
+    swap       = var.swap
   }
 
   disk {

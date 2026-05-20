@@ -86,7 +86,27 @@ variable "disk_size" {
 }
 
 variable "os_template" {
-  description = "Template del sistema operativo"
+  description = "Template del sistema operativo (sin extensión .tar.zst)"
   type        = string
-  default     = "debian-12-standard"
+  default     = "debian-12-standard_12.12_1_amd64"
+  validation {
+    condition     = can(regex("^[a-zA-Z0-9_-]+$", var.os_template))
+    error_message = "El nombre del template solo puede contener letras, números, guiones y guiones bajos"
+  }
+}
+
+variable "lxc_project" {
+  description = "Nombre del proyecto para tags"
+  type        = string
+  default     = "terraform-lxc"
+}
+
+variable "swap" {
+  description = "Cantidad de swap en MB (0 para sin swap)"
+  type        = number
+  default     = 512
+  validation {
+    condition     = var.swap >= 0 && var.swap <= 65536
+    error_message = "Swap debe estar entre 0 y 64GB"
+  }
 }
