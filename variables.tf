@@ -8,12 +8,6 @@ variable "pm_api_token_id" {
   type        = string
 }
 
-#variable "pm_api_token_secret" {
-#  description = "Secreto del token API"
-#  type        = string
-#  sensitive   = true
-#}
-
 variable "proxmox_node" {
   description = "Nodo de Proxmox donde crear los LXC"
   type        = string
@@ -100,5 +94,3 @@ variable "lxc_project" {
   type        = string
   default     = "terraform-lxc"
 }
-
-
