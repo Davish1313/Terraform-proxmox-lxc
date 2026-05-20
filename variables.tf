@@ -101,12 +101,4 @@ variable "lxc_project" {
   default     = "terraform-lxc"
 }
 
-variable "swap" {
-  description = "Cantidad de swap en MB (0 para sin swap)"
-  type        = number
-  default     = 512
-  validation {
-    condition     = var.swap >= 0 && var.swap <= 65536
-    error_message = "Swap debe estar entre 0 y 64GB"
-  }
-}
+
