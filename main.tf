@@ -1,3 +1,9 @@
+locals {
+  disk_value = tonumber(substr(var.disk_size, 0, length(var.disk_size) - 1))
+  disk_unit  = substr(var.disk_size, length(var.disk_size) - 1, 1)
+  disk_gb    = local.disk_unit == "M" ? ceil(local.disk_value / 1024) : local.disk_value
+}
+
 provider "proxmox" {
   endpoint  = var.pm_api_url
   api_token = var.pm_api_token_id
@@ -45,7 +51,7 @@ resource "proxmox_virtual_environment_container" "lxc" {
 
   disk {
     datastore_id = var.proxmox_storage
-    size         = tonumber(substr(var.disk_size, 0, length(var.disk_size) - 1))
+    size         = local.disk_gb
   }
 
   network_interface {
