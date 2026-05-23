@@ -1,12 +1,10 @@
-variable "pm_api_url" {
-  description = "URL de la API de Proxmox"
-  type        = string
-}
-
-variable "pm_api_token_id" {
-  description = "ID del token API"
-  type        = string
-  sensitive   = true
+variable "lxc_names" {
+  description = "Lista de nombres para los LXC"
+  type        = list(string)
+  validation {
+    condition     = length(var.lxc_names) > 0
+    error_message = "Debe especificar al menos un LXC"
+  }
 }
 
 variable "proxmox_node" {
@@ -19,15 +17,6 @@ variable "proxmox_storage" {
   type        = string
 }
 
-variable "lxc_names" {
-  description = "Lista de nombres para los LXC"
-  type        = list(string)
-  validation {
-    condition     = length(var.lxc_names) > 0
-    error_message = "Debe especificar al menos un LXC"
-  }
-}
-
 variable "lxc_password" {
   description = "Password root para los LXC"
   type        = string
@@ -37,12 +26,6 @@ variable "lxc_password" {
 variable "ssh_public_key" {
   description = "Clave pública SSH"
   type        = string
-}
-
-variable "ssh_port" {
-  description = "Puerto SSH interno de los LXC"
-  type        = number
-  default     = 22
 }
 
 variable "bridge" {
