@@ -90,6 +90,12 @@ variable "os_template" {
   }
 }
 
+variable "ansible_packages" {
+  description = "Paquetes adicionales para preparación Ansible (python3 ya incluido en Debian 12)"
+  type        = list(string)
+  default     = []
+}
+
 variable "lxc_project" {
   description = "Nombre del proyecto para tags"
   type        = string
