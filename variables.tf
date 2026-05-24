@@ -9,6 +9,17 @@ variable "pm_api_token_id" {
   sensitive   = true
 }
 
+variable "pm_ssh_username" {
+  description = "Usuario SSH para conexión al nodo Proxmox (requerido para snippets)"
+  type        = string
+  default     = "root"
+}
+
+variable "pm_ssh_node_address" {
+  description = "Dirección IP del nodo Proxmox para conexión SSH"
+  type        = string
+}
+
 variable "proxmox_node" {
   description = "Nodo de Proxmox donde crear los LXC"
   type        = string
