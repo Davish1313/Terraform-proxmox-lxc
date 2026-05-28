@@ -20,6 +20,12 @@ variable "pm_ssh_node_address" {
   type        = string
 }
 
+variable "pm_insecure" {
+  description = "Saltar verificación TLS del endpoint de Proxmox (solo desarrollo)"
+  type        = bool
+  default     = true
+}
+
 variable "proxmox_node" {
   description = "Nodo de Proxmox donde crear los LXC"
   type        = string
@@ -50,10 +56,10 @@ variable "ssh_public_key" {
   type        = string
 }
 
-variable "ssh_port" {
-  description = "Puerto SSH interno de los LXC"
-  type        = number
-  default     = 22
+variable "allow_root_login" {
+  description = "Permitir login SSH como root (recomendado false en producción)"
+  type        = bool
+  default     = true
 }
 
 variable "bridge" {

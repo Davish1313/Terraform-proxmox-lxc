@@ -1,7 +1,7 @@
 provider "proxmox" {
   endpoint  = var.pm_api_url
   api_token = var.pm_api_token_id
-  insecure  = true
+  insecure  = var.pm_insecure
 
   ssh {
     agent    = true
@@ -27,4 +27,5 @@ module "lxc" {
   os_template      = var.os_template
   lxc_project      = var.lxc_project
   ansible_packages = var.ansible_packages
+  allow_root_login = var.allow_root_login
 }

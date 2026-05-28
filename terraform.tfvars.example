@@ -19,4 +19,8 @@ memory          = 512
 disk_size       = "4G"
 
 # OS Template (must be available in Proxmox)
-os_template     = "debian-12-standard"
+os_template = "debian-12-standard_12.12_1_amd64"
+
+# Security
+pm_insecure       = true
+allow_root_login  = true

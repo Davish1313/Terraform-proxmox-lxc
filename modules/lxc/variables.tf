@@ -84,3 +84,9 @@ variable "lxc_project" {
   type        = string
   default     = "terraform-lxc"
 }
+
+variable "allow_root_login" {
+  description = "Permitir login SSH como root (recomendado false en producción)"
+  type        = bool
+  default     = true
+}
